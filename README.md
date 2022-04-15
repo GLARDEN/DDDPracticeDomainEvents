@@ -26,9 +26,34 @@ Created new project using [Clean Architecture](https://github.com/ardalis/apiend
   <b>NOTE:</b> I'm not sure if this is correct! It seems to work great but I'm not sure I fully understand how the GetRequiredService call 
                from IApplicationBuilder works. I believe <i>serviceProvider.GetRequiredService\<IMediator\>();</i> will return
                a unique instance of the service per request.
+  
+  In the <i>ProjectNameChangeHandler</i> I added a delay to the validation for a specifc project id to make sure this was not a blocking call. 
+  I opened 2 instances of swagger and triggered  Product.UpdateName for both id 1 & 2. I was able to call Product.UpdateName for ID 2 while 
+  the validation for the ID 1 was sleeping. SUCCESS!  
+  
+```cs
+  public async Task Handle(ProjectNameChangeRequested notification, CancellationToken cancellationToken)
+  {
+    if(notification.Id == 1)
+    {
+      Thread.Sleep(10000);
+    }
+
+    var findProjectsWithSameNameSpec = new FindProjectsWithSameNameSpec(notification.Id, notification.NewName);
+
+    var foundDuplicateRoleName = await _repository.AnyAsync(findProjectsWithSameNameSpec);
+
+    if (foundDuplicateRoleName)
+    {
+      throw new DuplicateProjectNameException($"{notification.NewName} already exists.");
+    }
+  }
+}
+```  
 ```cs
       //Set up a static instance of mediator to handle Immediate Domain Events.
       //Program.cs truncated for readability
+  
       SetUpMediatR(app);
       
       app.Run();
