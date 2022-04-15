@@ -18,7 +18,7 @@ Created new project using [Clean Architecture](https://github.com/ardalis/apiend
     Name = newName;
   }
 ```
-<b>QUESTON</b>
+<b>QUESTION</b>
 
 2) Setting up Mediator in Program.cs (.net core 6 single file set up). SetUpMediatR method was changed to use
    IApplicationBuilder to get the application services.
