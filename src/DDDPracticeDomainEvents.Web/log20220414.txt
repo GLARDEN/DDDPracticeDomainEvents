@@ -169,3 +169,416 @@ System.Exception: Test Project 1 already exists. Role Duplicate role names not a
    at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
    at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
 2022-04-14 19:14:29.630 -04:00 [INF] Request finished HTTP/1.1 PUT http://localhost:57678/Projects application/json-patch+json 55 - 500 - text/plain;+charset=utf-8 6223.7507ms
+2022-04-14 21:12:06.127 -04:00 [INF] User profile is available. Using 'C:\Users\Greg\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-04-14 21:12:07.705 -04:00 [INF] Entity Framework Core 6.0.2 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.2' with options: None
+2022-04-14 21:12:07.882 -04:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+PRAGMA journal_mode = 'wal';
+2022-04-14 21:12:08.038 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Projects" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Projects" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL,
+    "Priority" INTEGER NOT NULL
+);
+2022-04-14 21:12:08.039 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "ToDoItems" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_ToDoItems" PRIMARY KEY AUTOINCREMENT,
+    "Title" TEXT NOT NULL,
+    "Description" TEXT NOT NULL,
+    "IsDone" INTEGER NOT NULL,
+    "ProjectId" INTEGER NULL,
+    CONSTRAINT "FK_ToDoItems_Projects_ProjectId" FOREIGN KEY ("ProjectId") REFERENCES "Projects" ("Id")
+);
+2022-04-14 21:12:08.039 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_ToDoItems_ProjectId" ON "ToDoItems" ("ProjectId");
+2022-04-14 21:12:08.083 -04:00 [INF] Entity Framework Core 6.0.2 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.2' with options: None
+2022-04-14 21:12:08.312 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "ToDoItems" AS "t")
+2022-04-14 21:12:08.366 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."Priority"
+FROM "Projects" AS "p"
+2022-04-14 21:12:08.376 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."Description", "t"."IsDone", "t"."ProjectId", "t"."Title"
+FROM "ToDoItems" AS "t"
+2022-04-14 21:12:08.594 -04:00 [INF] Executed DbCommand (6ms) [Parameters=[@p0='?' (Size = 14), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Projects" ("Name", "Priority")
+VALUES (@p0, @p1);
+SELECT "Id"
+FROM "Projects"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-04-14 21:12:08.621 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 14), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Projects" ("Name", "Priority")
+VALUES (@p0, @p1);
+SELECT "Id"
+FROM "Projects"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-04-14 21:12:08.625 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@p2='?' (Size = 31), @p3='?' (DbType = Boolean), @p4='?' (DbType = Int32), @p5='?' (Size = 18)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("Description", "IsDone", "ProjectId", "Title")
+VALUES (@p2, @p3, @p4, @p5);
+SELECT "Id"
+FROM "ToDoItems"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-04-14 21:12:08.627 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 81), @p1='?' (DbType = Boolean), @p2='?' (DbType = Int32), @p3='?' (Size = 15)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3);
+SELECT "Id"
+FROM "ToDoItems"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-04-14 21:12:08.628 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 59), @p1='?' (DbType = Boolean), @p2='?' (DbType = Int32), @p3='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3);
+SELECT "Id"
+FROM "ToDoItems"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-04-14 21:12:08.628 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 31), @p1='?' (DbType = Boolean), @p2='?' (DbType = Int32), @p3='?' (Size = 18)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3);
+SELECT "Id"
+FROM "ToDoItems"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-04-14 21:12:08.629 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 81), @p1='?' (DbType = Boolean), @p2='?' (DbType = Int32), @p3='?' (Size = 15)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3);
+SELECT "Id"
+FROM "ToDoItems"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-04-14 21:12:08.629 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 59), @p1='?' (DbType = Boolean), @p2='?' (DbType = Int32), @p3='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3);
+SELECT "Id"
+FROM "ToDoItems"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-04-14 21:12:08.862 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-04-14 21:12:08.863 -04:00 [INF] Hosting environment: Development
+2022-04-14 21:12:08.863 -04:00 [INF] Content root path: C:\IT-FITS\Development\GitHub\DDDPracticeDomainEvents\src\DDDPracticeDomainEvents.Web\
+2022-04-14 21:12:08.909 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2022-04-14 21:12:08.981 -04:00 [WRN] Failed to determine the https port for redirect.
+2022-04-14 21:12:09.030 -04:00 [INF] Executing endpoint 'DDDPracticeDomainEvents.Web.Controllers.HomeController.Index (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:12:09.044 -04:00 [INF] Route matched with {action = "Index", controller = "Home", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller DDDPracticeDomainEvents.Web.Controllers.HomeController (DDDPracticeDomainEvents.Web).
+2022-04-14 21:12:09.054 -04:00 [INF] Executing ViewResult, running view Index.
+2022-04-14 21:12:09.262 -04:00 [INF] Executed ViewResult - view Index executed in 202.1851ms.
+2022-04-14 21:12:09.266 -04:00 [INF] Executed action DDDPracticeDomainEvents.Web.Controllers.HomeController.Index (DDDPracticeDomainEvents.Web) in 221.3921ms
+2022-04-14 21:12:09.266 -04:00 [INF] Executed endpoint 'DDDPracticeDomainEvents.Web.Controllers.HomeController.Index (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:12:09.327 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 200 - text/html;+charset=utf-8 423.2800ms
+2022-04-14 21:12:09.337 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.css - -
+2022-04-14 21:12:09.337 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - -
+2022-04-14 21:12:09.337 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.js - -
+2022-04-14 21:12:09.390 -04:00 [INF] The file /lib/bootstrap/dist/js/bootstrap.js was not modified
+2022-04-14 21:12:09.390 -04:00 [INF] The file /js/site.js was not modified
+2022-04-14 21:12:09.391 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.js - - - 304 - application/javascript 54.4696ms
+2022-04-14 21:12:09.391 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - - 304 - application/javascript 54.4638ms
+2022-04-14 21:12:09.391 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-04-14 21:12:09.391 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.js - -
+2022-04-14 21:12:09.392 -04:00 [INF] The file /lib/jquery/dist/jquery.js was not modified
+2022-04-14 21:12:09.392 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.js - - - 304 - application/javascript 0.6917ms
+2022-04-14 21:12:09.392 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/css/site.css - -
+2022-04-14 21:12:09.393 -04:00 [INF] The file /css/site.css was not modified
+2022-04-14 21:12:09.393 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/css/site.css - - - 304 - text/css 0.4572ms
+2022-04-14 21:12:09.395 -04:00 [INF] The file /lib/bootstrap/dist/css/bootstrap.css was not modified
+2022-04-14 21:12:09.395 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.css - - - 304 - text/css 58.7840ms
+2022-04-14 21:12:09.399 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12012 application/javascript;+charset=utf-8 6.7939ms
+2022-04-14 21:12:36.114 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/index.html - -
+2022-04-14 21:12:36.283 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/index.html - - - 200 - text/html;charset=utf-8 181.8492ms
+2022-04-14 21:12:36.285 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-04-14 21:12:36.287 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12012 application/javascript;+charset=utf-8 1.8291ms
+2022-04-14 21:12:36.464 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - -
+2022-04-14 21:12:36.719 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 255.3075ms
+2022-04-14 21:12:44.496 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/Projects - -
+2022-04-14 21:12:44.497 -04:00 [INF] Executing endpoint 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.List.HandleAsync (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:12:44.524 -04:00 [INF] Route matched with {action = "Handle", controller = "List", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.ProjectListResponse]] HandleAsync(System.Threading.CancellationToken) on controller DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.List (DDDPracticeDomainEvents.Web).
+2022-04-14 21:12:44.617 -04:00 [INF] Entity Framework Core 6.0.2 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.2' with options: None
+2022-04-14 21:12:44.640 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."Priority"
+FROM "Projects" AS "p"
+2022-04-14 21:12:44.655 -04:00 [INF] Executing OkObjectResult, writing value of type 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.ProjectListResponse'.
+2022-04-14 21:12:44.793 -04:00 [INF] Executed action DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.List.HandleAsync (DDDPracticeDomainEvents.Web) in 268.891ms
+2022-04-14 21:12:44.793 -04:00 [INF] Executed endpoint 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.List.HandleAsync (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:12:44.811 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/Projects - - - 200 80 application/json;+charset=utf-8 314.8700ms
+2022-04-14 21:12:58.453 -04:00 [INF] Request starting HTTP/1.1 PUT http://localhost:57678/Projects application/json-patch+json 57
+2022-04-14 21:12:58.453 -04:00 [INF] Executing endpoint 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:12:58.458 -04:00 [INF] Route matched with {action = "Handle", controller = "Update", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.UpdateProjectResponse]] HandleAsync(DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.UpdateProjectRequest, System.Threading.CancellationToken) on controller DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update (DDDPracticeDomainEvents.Web).
+2022-04-14 21:12:58.523 -04:00 [INF] Entity Framework Core 6.0.2 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.2' with options: None
+2022-04-14 21:12:58.569 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."Priority"
+FROM "Projects" AS "p"
+WHERE "p"."Id" = @__p_0
+LIMIT 1
+2022-04-14 21:12:58.582 -04:00 [INF] Entity Framework Core 6.0.2 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.2' with options: None
+2022-04-14 21:12:58.617 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__projectId_0='?' (DbType = Int32), @__ToLower_1='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Projects" AS "p"
+    WHERE ("p"."Id" <> @__projectId_0) AND (lower("p"."Name") = @__ToLower_1))
+2022-04-14 21:12:58.812 -04:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+2022-04-14 21:12:58.817 -04:00 [INF] Executed action DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web) in 359.2057ms
+2022-04-14 21:12:58.817 -04:00 [INF] Executed endpoint 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:12:58.818 -04:00 [INF] Request finished HTTP/1.1 PUT http://localhost:57678/Projects application/json-patch+json 57 - 400 43 application/json;+charset=utf-8 365.0315ms
+2022-04-14 21:14:36.376 -04:00 [INF] Request starting HTTP/1.1 PUT http://localhost:57678/Projects application/json-patch+json 57
+2022-04-14 21:14:36.382 -04:00 [INF] Executing endpoint 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:14:36.384 -04:00 [INF] Route matched with {action = "Handle", controller = "Update", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.UpdateProjectResponse]] HandleAsync(DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.UpdateProjectRequest, System.Threading.CancellationToken) on controller DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update (DDDPracticeDomainEvents.Web).
+2022-04-14 21:14:36.388 -04:00 [INF] Entity Framework Core 6.0.2 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.2' with options: None
+2022-04-14 21:14:36.407 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."Priority"
+FROM "Projects" AS "p"
+WHERE "p"."Id" = @__p_0
+LIMIT 1
+2022-04-14 21:14:36.420 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__projectId_0='?' (DbType = Int32), @__ToLower_1='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Projects" AS "p"
+    WHERE ("p"."Id" <> @__projectId_0) AND (lower("p"."Name") = @__ToLower_1))
+2022-04-14 21:14:36.574 -04:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+2022-04-14 21:14:36.575 -04:00 [INF] Executed action DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web) in 190.5499ms
+2022-04-14 21:14:36.575 -04:00 [INF] Executed endpoint 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:14:36.575 -04:00 [INF] Request finished HTTP/1.1 PUT http://localhost:57678/Projects application/json-patch+json 57 - 400 43 application/json;+charset=utf-8 211.1649ms
+2022-04-14 21:15:20.960 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/index.html - -
+2022-04-14 21:15:20.998 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/index.html - - - 200 - text/html;charset=utf-8 38.3448ms
+2022-04-14 21:15:21.030 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-04-14 21:15:21.034 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12012 application/javascript;+charset=utf-8 4.1475ms
+2022-04-14 21:15:21.410 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - -
+2022-04-14 21:15:21.420 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 10.1673ms
+2022-04-14 21:15:40.636 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/index.html - -
+2022-04-14 21:15:40.671 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/index.html - - - 200 - text/html;charset=utf-8 35.2508ms
+2022-04-14 21:15:40.718 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-04-14 21:15:40.723 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12012 application/javascript;+charset=utf-8 4.5047ms
+2022-04-14 21:15:41.007 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - -
+2022-04-14 21:15:41.016 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 9.1680ms
+2022-04-14 21:15:50.429 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/Projects - -
+2022-04-14 21:15:50.430 -04:00 [INF] Executing endpoint 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.List.HandleAsync (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:15:50.435 -04:00 [INF] Route matched with {action = "Handle", controller = "List", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.ProjectListResponse]] HandleAsync(System.Threading.CancellationToken) on controller DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.List (DDDPracticeDomainEvents.Web).
+2022-04-14 21:15:50.439 -04:00 [INF] Entity Framework Core 6.0.2 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.2' with options: None
+2022-04-14 21:15:50.440 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."Priority"
+FROM "Projects" AS "p"
+2022-04-14 21:15:50.442 -04:00 [INF] Executing OkObjectResult, writing value of type 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.ProjectListResponse'.
+2022-04-14 21:15:50.444 -04:00 [INF] Executed action DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.List.HandleAsync (DDDPracticeDomainEvents.Web) in 7.8079ms
+2022-04-14 21:15:50.444 -04:00 [INF] Executed endpoint 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.List.HandleAsync (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:15:50.444 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/Projects - - - 200 80 application/json;+charset=utf-8 15.4942ms
+2022-04-14 21:16:16.171 -04:00 [INF] Request starting HTTP/1.1 PUT http://localhost:57678/Projects application/json-patch+json 57
+2022-04-14 21:16:16.172 -04:00 [INF] Executing endpoint 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:16:16.179 -04:00 [INF] Route matched with {action = "Handle", controller = "Update", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.UpdateProjectResponse]] HandleAsync(DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.UpdateProjectRequest, System.Threading.CancellationToken) on controller DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update (DDDPracticeDomainEvents.Web).
+2022-04-14 21:16:16.181 -04:00 [INF] Entity Framework Core 6.0.2 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.2' with options: None
+2022-04-14 21:16:16.184 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."Priority"
+FROM "Projects" AS "p"
+WHERE "p"."Id" = @__p_0
+LIMIT 1
+2022-04-14 21:16:26.205 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__projectId_0='?' (DbType = Int32), @__ToLower_1='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Projects" AS "p"
+    WHERE ("p"."Id" <> @__projectId_0) AND (lower("p"."Name") = @__ToLower_1))
+2022-04-14 21:16:26.375 -04:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+2022-04-14 21:16:26.375 -04:00 [INF] Executed action DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web) in 10196.4463ms
+2022-04-14 21:16:26.376 -04:00 [INF] Executed endpoint 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:16:26.376 -04:00 [INF] Request finished HTTP/1.1 PUT http://localhost:57678/Projects application/json-patch+json 57 - 400 43 application/json;+charset=utf-8 10205.0234ms
+2022-04-14 21:16:26.393 -04:00 [INF] Request starting HTTP/1.1 PUT http://localhost:57678/Projects application/json-patch+json 57
+2022-04-14 21:16:26.393 -04:00 [INF] Executing endpoint 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:16:26.393 -04:00 [INF] Route matched with {action = "Handle", controller = "Update", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.UpdateProjectResponse]] HandleAsync(DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.UpdateProjectRequest, System.Threading.CancellationToken) on controller DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update (DDDPracticeDomainEvents.Web).
+2022-04-14 21:16:26.396 -04:00 [INF] Entity Framework Core 6.0.2 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.2' with options: None
+2022-04-14 21:16:26.397 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."Priority"
+FROM "Projects" AS "p"
+WHERE "p"."Id" = @__p_0
+LIMIT 1
+2022-04-14 21:16:26.399 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__projectId_0='?' (DbType = Int32), @__ToLower_1='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Projects" AS "p"
+    WHERE ("p"."Id" <> @__projectId_0) AND (lower("p"."Name") = @__ToLower_1))
+2022-04-14 21:16:38.084 -04:00 [INF] User profile is available. Using 'C:\Users\Greg\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-04-14 21:16:39.171 -04:00 [INF] Entity Framework Core 6.0.2 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.2' with options: None
+2022-04-14 21:16:39.328 -04:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+PRAGMA journal_mode = 'wal';
+2022-04-14 21:16:39.483 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Projects" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Projects" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL,
+    "Priority" INTEGER NOT NULL
+);
+2022-04-14 21:16:39.483 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "ToDoItems" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_ToDoItems" PRIMARY KEY AUTOINCREMENT,
+    "Title" TEXT NOT NULL,
+    "Description" TEXT NOT NULL,
+    "IsDone" INTEGER NOT NULL,
+    "ProjectId" INTEGER NULL,
+    CONSTRAINT "FK_ToDoItems_Projects_ProjectId" FOREIGN KEY ("ProjectId") REFERENCES "Projects" ("Id")
+);
+2022-04-14 21:16:39.484 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_ToDoItems_ProjectId" ON "ToDoItems" ("ProjectId");
+2022-04-14 21:16:39.529 -04:00 [INF] Entity Framework Core 6.0.2 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.2' with options: None
+2022-04-14 21:16:39.912 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "ToDoItems" AS "t")
+2022-04-14 21:16:39.955 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."Priority"
+FROM "Projects" AS "p"
+2022-04-14 21:16:39.959 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."Description", "t"."IsDone", "t"."ProjectId", "t"."Title"
+FROM "ToDoItems" AS "t"
+2022-04-14 21:16:40.179 -04:00 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (Size = 14), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Projects" ("Name", "Priority")
+VALUES (@p0, @p1);
+SELECT "Id"
+FROM "Projects"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-04-14 21:16:40.206 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 14), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Projects" ("Name", "Priority")
+VALUES (@p0, @p1);
+SELECT "Id"
+FROM "Projects"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-04-14 21:16:40.208 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@p2='?' (Size = 31), @p3='?' (DbType = Boolean), @p4='?' (DbType = Int32), @p5='?' (Size = 18)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("Description", "IsDone", "ProjectId", "Title")
+VALUES (@p2, @p3, @p4, @p5);
+SELECT "Id"
+FROM "ToDoItems"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-04-14 21:16:40.209 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 81), @p1='?' (DbType = Boolean), @p2='?' (DbType = Int32), @p3='?' (Size = 15)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3);
+SELECT "Id"
+FROM "ToDoItems"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-04-14 21:16:40.211 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 59), @p1='?' (DbType = Boolean), @p2='?' (DbType = Int32), @p3='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3);
+SELECT "Id"
+FROM "ToDoItems"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-04-14 21:16:40.212 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 31), @p1='?' (DbType = Boolean), @p2='?' (DbType = Int32), @p3='?' (Size = 18)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3);
+SELECT "Id"
+FROM "ToDoItems"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-04-14 21:16:40.214 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 81), @p1='?' (DbType = Boolean), @p2='?' (DbType = Int32), @p3='?' (Size = 15)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3);
+SELECT "Id"
+FROM "ToDoItems"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-04-14 21:16:40.215 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 59), @p1='?' (DbType = Boolean), @p2='?' (DbType = Int32), @p3='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3);
+SELECT "Id"
+FROM "ToDoItems"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-04-14 21:16:40.353 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-04-14 21:16:40.354 -04:00 [INF] Hosting environment: Development
+2022-04-14 21:16:40.354 -04:00 [INF] Content root path: C:\IT-FITS\Development\GitHub\DDDPracticeDomainEvents\src\DDDPracticeDomainEvents.Web\
+2022-04-14 21:16:40.386 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2022-04-14 21:16:40.455 -04:00 [WRN] Failed to determine the https port for redirect.
+2022-04-14 21:16:40.499 -04:00 [INF] Executing endpoint 'DDDPracticeDomainEvents.Web.Controllers.HomeController.Index (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:16:40.507 -04:00 [INF] Route matched with {action = "Index", controller = "Home", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller DDDPracticeDomainEvents.Web.Controllers.HomeController (DDDPracticeDomainEvents.Web).
+2022-04-14 21:16:40.522 -04:00 [INF] Executing ViewResult, running view Index.
+2022-04-14 21:16:40.733 -04:00 [INF] Executed ViewResult - view Index executed in 210.8145ms.
+2022-04-14 21:16:40.737 -04:00 [INF] Executed action DDDPracticeDomainEvents.Web.Controllers.HomeController.Index (DDDPracticeDomainEvents.Web) in 229.1449ms
+2022-04-14 21:16:40.738 -04:00 [INF] Executed endpoint 'DDDPracticeDomainEvents.Web.Controllers.HomeController.Index (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:16:40.803 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 200 - text/html;+charset=utf-8 418.6483ms
+2022-04-14 21:16:41.033 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-04-14 21:16:41.049 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12012 application/javascript;+charset=utf-8 15.9654ms
+2022-04-14 21:16:45.043 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/index.html - -
+2022-04-14 21:16:45.143 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/index.html - - - 200 - text/html;charset=utf-8 99.6529ms
+2022-04-14 21:16:45.166 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-04-14 21:16:45.168 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12012 application/javascript;+charset=utf-8 1.9164ms
+2022-04-14 21:16:45.378 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - -
+2022-04-14 21:16:45.539 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 160.2541ms
+2022-04-14 21:16:56.216 -04:00 [INF] Request starting HTTP/1.1 PUT http://localhost:57678/Projects application/json-patch+json 57
+2022-04-14 21:16:56.217 -04:00 [INF] Executing endpoint 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:16:56.236 -04:00 [INF] Route matched with {action = "Handle", controller = "Update", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.UpdateProjectResponse]] HandleAsync(DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.UpdateProjectRequest, System.Threading.CancellationToken) on controller DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update (DDDPracticeDomainEvents.Web).
+2022-04-14 21:16:56.430 -04:00 [INF] Entity Framework Core 6.0.2 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.2' with options: None
+2022-04-14 21:16:56.495 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."Priority"
+FROM "Projects" AS "p"
+WHERE "p"."Id" = @__p_0
+LIMIT 1
+2022-04-14 21:16:56.516 -04:00 [INF] Entity Framework Core 6.0.2 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.2' with options: None
+2022-04-14 21:16:56.555 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__projectId_0='?' (DbType = Int32), @__ToLower_1='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Projects" AS "p"
+    WHERE ("p"."Id" <> @__projectId_0) AND (lower("p"."Name") = @__ToLower_1))
+2022-04-14 21:16:56.562 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 14), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Projects" SET "Name" = @p0, "Priority" = @p1
+WHERE "Id" = @p2;
+SELECT changes();
+2022-04-14 21:16:56.573 -04:00 [INF] Executing OkObjectResult, writing value of type 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.UpdateProjectResponse'.
+2022-04-14 21:16:56.612 -04:00 [INF] Executed action DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web) in 375.7206ms
+2022-04-14 21:16:56.612 -04:00 [INF] Executed endpoint 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:16:56.615 -04:00 [INF] Request finished HTTP/1.1 PUT http://localhost:57678/Projects application/json-patch+json 57 - 200 44 application/json;+charset=utf-8 399.9471ms
+2022-04-14 21:17:07.980 -04:00 [INF] Request starting HTTP/1.1 PUT http://localhost:57678/Projects application/json-patch+json 57
+2022-04-14 21:17:07.980 -04:00 [INF] Executing endpoint 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:17:07.980 -04:00 [INF] Route matched with {action = "Handle", controller = "Update", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.UpdateProjectResponse]] HandleAsync(DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.UpdateProjectRequest, System.Threading.CancellationToken) on controller DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update (DDDPracticeDomainEvents.Web).
+2022-04-14 21:17:07.983 -04:00 [INF] Entity Framework Core 6.0.2 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.2' with options: None
+2022-04-14 21:17:07.993 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."Priority"
+FROM "Projects" AS "p"
+WHERE "p"."Id" = @__p_0
+LIMIT 1
+2022-04-14 21:17:08.985 -04:00 [INF] Request starting HTTP/1.1 PUT http://localhost:57678/Projects application/json-patch+json 57
+2022-04-14 21:17:08.985 -04:00 [INF] Executing endpoint 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:17:08.986 -04:00 [INF] Route matched with {action = "Handle", controller = "Update", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.UpdateProjectResponse]] HandleAsync(DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.UpdateProjectRequest, System.Threading.CancellationToken) on controller DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update (DDDPracticeDomainEvents.Web).
+2022-04-14 21:17:08.987 -04:00 [INF] Entity Framework Core 6.0.2 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.2' with options: None
+2022-04-14 21:17:08.990 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."Priority"
+FROM "Projects" AS "p"
+WHERE "p"."Id" = @__p_0
+LIMIT 1
+2022-04-14 21:17:08.993 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__projectId_0='?' (DbType = Int32), @__ToLower_1='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Projects" AS "p"
+    WHERE ("p"."Id" <> @__projectId_0) AND (lower("p"."Name") = @__ToLower_1))
+2022-04-14 21:17:09.214 -04:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+2022-04-14 21:17:09.225 -04:00 [INF] Executed action DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web) in 238.9747ms
+2022-04-14 21:17:09.225 -04:00 [INF] Executed endpoint 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:17:09.226 -04:00 [INF] Request finished HTTP/1.1 PUT http://localhost:57678/Projects application/json-patch+json 57 - 400 43 application/json;+charset=utf-8 240.8567ms
+2022-04-14 21:17:12.344 -04:00 [INF] Request starting HTTP/1.1 PUT http://localhost:57678/Projects application/json-patch+json 57
+2022-04-14 21:17:12.345 -04:00 [INF] Executing endpoint 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:17:12.345 -04:00 [INF] Route matched with {action = "Handle", controller = "Update", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.UpdateProjectResponse]] HandleAsync(DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.UpdateProjectRequest, System.Threading.CancellationToken) on controller DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update (DDDPracticeDomainEvents.Web).
+2022-04-14 21:17:12.348 -04:00 [INF] Entity Framework Core 6.0.2 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.2' with options: None
+2022-04-14 21:17:12.350 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."Priority"
+FROM "Projects" AS "p"
+WHERE "p"."Id" = @__p_0
+LIMIT 1
+2022-04-14 21:17:12.354 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__projectId_0='?' (DbType = Int32), @__ToLower_1='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Projects" AS "p"
+    WHERE ("p"."Id" <> @__projectId_0) AND (lower("p"."Name") = @__ToLower_1))
+2022-04-14 21:17:12.558 -04:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+2022-04-14 21:17:12.559 -04:00 [INF] Executed action DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web) in 213.7934ms
+2022-04-14 21:17:12.559 -04:00 [INF] Executed endpoint 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:17:12.559 -04:00 [INF] Request finished HTTP/1.1 PUT http://localhost:57678/Projects application/json-patch+json 57 - 400 43 application/json;+charset=utf-8 214.6814ms
+2022-04-14 21:17:16.722 -04:00 [INF] Request starting HTTP/1.1 PUT http://localhost:57678/Projects application/json-patch+json 57
+2022-04-14 21:17:16.723 -04:00 [INF] Executing endpoint 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:17:16.723 -04:00 [INF] Route matched with {action = "Handle", controller = "Update", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.UpdateProjectResponse]] HandleAsync(DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.UpdateProjectRequest, System.Threading.CancellationToken) on controller DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update (DDDPracticeDomainEvents.Web).
+2022-04-14 21:17:16.726 -04:00 [INF] Entity Framework Core 6.0.2 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.2' with options: None
+2022-04-14 21:17:16.729 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."Priority"
+FROM "Projects" AS "p"
+WHERE "p"."Id" = @__p_0
+LIMIT 1
+2022-04-14 21:17:16.732 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__projectId_0='?' (DbType = Int32), @__ToLower_1='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Projects" AS "p"
+    WHERE ("p"."Id" <> @__projectId_0) AND (lower("p"."Name") = @__ToLower_1))
+2022-04-14 21:17:16.889 -04:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+2022-04-14 21:17:16.889 -04:00 [INF] Executed action DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web) in 165.9706ms
+2022-04-14 21:17:16.890 -04:00 [INF] Executed endpoint 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:17:16.890 -04:00 [INF] Request finished HTTP/1.1 PUT http://localhost:57678/Projects application/json-patch+json 57 - 400 43 application/json;+charset=utf-8 168.4885ms
+2022-04-14 21:17:18.006 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__projectId_0='?' (DbType = Int32), @__ToLower_1='?' (Size = 14)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Projects" AS "p"
+    WHERE ("p"."Id" <> @__projectId_0) AND (lower("p"."Name") = @__ToLower_1))
+2022-04-14 21:17:18.150 -04:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+2022-04-14 21:17:18.151 -04:00 [INF] Executed action DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web) in 10170.3407ms
+2022-04-14 21:17:18.151 -04:00 [INF] Executed endpoint 'DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints.Update.HandleAsync (DDDPracticeDomainEvents.Web)'
+2022-04-14 21:17:18.151 -04:00 [INF] Request finished HTTP/1.1 PUT http://localhost:57678/Projects application/json-patch+json 57 - 400 43 application/json;+charset=utf-8 10171.4155ms

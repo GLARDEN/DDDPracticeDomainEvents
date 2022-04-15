@@ -1,7 +1,11 @@
 ﻿using Ardalis.ApiEndpoints;
+
 using DDDPracticeDomainEvents.Core.ProjectAggregate;
+using DDDPracticeDomainEvents.Core.ProjectAggregate.Exceptions;
 using DDDPracticeDomainEvents.SharedKernel.Interfaces;
+
 using Microsoft.AspNetCore.Mvc;
+
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace DDDPracticeDomainEvents.Web.Endpoints.ProjectEndpoints;
@@ -37,7 +41,17 @@ public class Update : EndpointBaseAsync
     {
       return NotFound();
     }
-    existingProject.UpdateName(request.Name);
+
+    try
+    {
+      existingProject.UpdateName(request.Name);
+    }
+    catch(DuplicateProjectNameException ex)
+    {
+      this.ModelState.AddModelError("name", ex.Message);
+      return BadRequest(ModelState);
+    }
+    
 
     await _repository.UpdateAsync(existingProject); // TODO: pass cancellation token
 

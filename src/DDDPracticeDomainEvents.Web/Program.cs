@@ -1,6 +1,7 @@
 ﻿using Ardalis.ListStartupServices;
 
 using Autofac;
+using Autofac.Core;
 using Autofac.Extensions.DependencyInjection;
 
 using DDDPracticeDomainEvents.Core;
@@ -55,8 +56,6 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
   containerBuilder.RegisterModule(new DefaultCoreModule());
   containerBuilder.RegisterModule(new DefaultInfrastructureModule(builder.Environment.EnvironmentName == "Development"));
 });
-
-//builder.Logging.AddAzureWebAppDiagnostics(); add this if deploying to Azure
 
 var app = builder.Build();
 
