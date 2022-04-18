@@ -9,7 +9,7 @@ Created new project using [Clean Architecture](https://github.com/ardalis/apiend
 
 
 
-1) Method from Project class that calls the Domain Event to validate the requested project name is unique.
+1) Method from Project class that calls the domain event to validate the requested project name is unique.
 ```cs
   public void UpdateName(string newName)
   {
