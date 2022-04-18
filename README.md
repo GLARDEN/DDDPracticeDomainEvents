@@ -69,7 +69,8 @@ Created new project using [Clean Architecture](https://github.com/ardalis/apiend
         return serviceProvider.GetRequiredService<IMediator>();
       }
 ```
-3) We need a static instance of Mediator which is implemented by creating a static DomainEvents Class
+3) We need a static instance of Mediator which is implemented by creating a static DomainEvents Class, so that we can avoid the need to DI Mediator into our
+   domain entity. 
 ```cs
     public static class DomainEvents
     {
